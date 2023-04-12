@@ -2,15 +2,17 @@
 const express = require ('express');
 const empRoute = express.Router();
 const empWorkflow = require ('../workflow/empWorkflow');
+const pool = require('../db/config');
 
-empRoute.get('/show', async (req, res) => {
+
+empRoute.get("/show", async (req, res) => {
     try {
-        let user =  await empWorkflow.getAllEmployee();
-        res.status(200).send(user); 
+      const allShow = await empWorkflow.getAllEmployee();
+      res.json(allShow.rows);
     } catch (err) {
-        res.status(500).send(err);
+      res.json(err.message);
     }
-})
+  });
 
 module.exports = empRoute;
 
