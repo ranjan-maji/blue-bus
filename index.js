@@ -3,12 +3,6 @@ const bodypasser = require('body-parser');
 
 
 
-
-
-
-
-
-
 const app = express()
 app.use(bodypasser.json());
 app.use(
